@@ -1,0 +1,67 @@
+name: Pipeline de Teste
+
+# Quando o pipeline vai executar
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Os trabalhos que serão executados
+jobs:
+  teste-basico:
+    name: Teste Básico
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Baixa o código do repositório
+    - name: Fazer checkout do código
+      uses: actions/checkout@v3
+    
+    # 2. Configura o Node.js
+    - name: Configurar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    # 3. Mostra informações do sistema
+    - name: Mostrar informações do sistema
+      run: |
+        echo "🚀 Iniciando pipeline de teste..."
+        echo "📅 Data: $(date)"
+        echo "🖥️  Sistema: $(uname -a)"
+        echo "📦 Versão do Node: $(node --version)"
+        echo "📦 Versão do NPM: $(npm --version)"
+    
+    # 4. Lista os arquivos do projeto
+    - name: Listar arquivos do projeto
+      run: |
+        echo "📁 Arquivos no repositório:"
+        ls -la
+    
+    # 5. Simula instalação de dependências
+    - name: Simular instalação de dependências
+      run: |
+        echo "📦 Instalando dependências..."
+        sleep 2
+        echo "✅ Dependências instaladas com sucesso!"
+    
+    # 6. Simula execução de testes
+    - name: Simular execução de testes
+      run: |
+        echo "🧪 Executando testes..."
+        sleep 3
+        echo "✅ Todos os testes passaram!"
+    
+    # 7. Simula build da aplicação
+    - name: Simular build da aplicação
+      run: |
+        echo "🔨 Fazendo build da aplicação..."
+        sleep 2
+        echo "✅ Build concluído com sucesso!"
+    
+    # 8. Finalização
+    - name: Pipeline concluído
+      run: |
+        echo "🎉 Pipeline executado com sucesso!"
+        echo "✨ Pronto para deploy!"
